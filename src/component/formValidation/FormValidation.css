@@ -1,0 +1,118 @@
+body {
+    background-color: #D7C7F0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .login-form {
+    max-width: 700px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  h3 {
+    text-align: center;
+    font-size: 24px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: #5f1c75;
+    margin-bottom: 30px;
+  }
+  
+  .form-control {
+    border-radius: 25px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+  }
+  
+  .form-control:focus {
+    border-color: #c47fda;
+  }
+  
+  Button {
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    width: 70%;
+    cursor: pointer;
+    padding: 12px;
+    margin-top: 10px;
+  }
+  
+  .select-button {
+    border-radius: 25px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+  }
+  
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .custom-button-register {
+    background-color: #5f1c75;
+    font-weight: bold;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+  }
+  
+  .custom-button-login {
+    background-color: #9d44b8;
+    font-weight: bold;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+  }
+  
+  .custom-button-login:hover {
+    background-color: #5f1c75;
+  }
+  
+  .custom-button-register:hover {
+    background-color: #9d44b8;
+  }
+  
+  .text-center {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .form-control.is-invalid {
+    border-color: #e74c3c;
+  }
+  
+  .form-control.is-invalid:focus {
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+  }
+  
+  
+  .custom-button-faq {
+    color: #5f1c75;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
