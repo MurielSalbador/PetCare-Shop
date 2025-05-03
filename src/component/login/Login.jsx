@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './FormValidation.css';
+import {useNavigate} from 'react-router-dom'
+import './Login.css';
 
-function FormValidation() {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -17,6 +19,10 @@ function FormValidation() {
     }
 
     setValidated(true);
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/register');
   };
 
   return (
@@ -64,15 +70,19 @@ function FormValidation() {
           </Form.Group>
 
           <div className="button-group">
-            <Button type="submit" className="custom-button-login">
-              Ingresar
-            </Button>
+          <Button type="submit"className="custom-button-register">
+           Iniciar Sesión
+          </Button>
 
-            <Button type="submit" className="custom-button-register">
-              Registrarse
-            </Button>
+            
+
           </div>
         </Form>
+
+        <Button onClick={handleRegisterClick} className="custom-button-register">
+              Registrarse
+            </Button>
+            
       </div>
 
       <div className="faq-recomendation">
@@ -95,4 +105,4 @@ function FormValidation() {
   );
 }
 
-export default FormValidation;
+export default Login;
