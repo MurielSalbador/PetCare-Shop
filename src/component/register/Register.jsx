@@ -15,6 +15,7 @@ function Register() {
     apellido: '',
     email: '',
     password: '',
+    confirmPassword: '',
     dni: '',
   });
   const [showModal, setShowModal] = useState(false);
@@ -32,7 +33,9 @@ function Register() {
     const form = event.currentTarget;
     event.preventDefault();
   
-    if (form.checkValidity() === false) {
+    const passwordsMatch = formData.password === formData.confirmPassword;
+  
+    if (form.checkValidity() === false || !passwordsMatch) {
       event.stopPropagation();
       setValidated(true);
       return;
@@ -117,6 +120,32 @@ function Register() {
             </Form.Control.Feedback>
             <Form.Control.Feedback>Contraseña segura </Form.Control.Feedback>
           </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formConfirmPassword">
+          <Form.Label>Repita la Contraseña</Form.Label>
+          <Form.Control
+            required
+            type="password"
+            placeholder="Repetí tu contraseña"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            minLength={6}
+            isInvalid={validated && (formData.confirmPassword.length < 6 || formData.confirmPassword !== formData.password)}
+            isValid={validated && formData.confirmPassword.length >= 6 && formData.confirmPassword === formData.password}
+          />
+          {validated && formData.password !== formData.confirmPassword && (
+            <Form.Control.Feedback type="invalid">
+              Las contraseñas no coinciden.
+            </Form.Control.Feedback>
+          )}
+          {validated && formData.password === formData.confirmPassword && (
+            <Form.Control.Feedback type="valid">
+              Las contraseñas coinciden.
+            </Form.Control.Feedback>
+          )}
+        </Form.Group>
+
 
           <Form.Group className="mb-3" controlId="formDNI">
             <Form.Label>DNI</Form.Label>

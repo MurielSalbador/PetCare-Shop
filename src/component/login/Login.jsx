@@ -28,17 +28,18 @@ function Login() {
   return (
     <>
       <div className="login-form">
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <h3 className="text-center mb-4">Iniciar sesión</h3>
+      <h3 className="text-center mb-4">Iniciar sesión</h3>
 
-          <Form.Group className="mb-3" controlId="formBasicSelect">
-            <Form.Label>Seleccione una opción</Form.Label>
-            <Form.Select className="select-button">
-              <option value="1">Usuario</option>
-              <option value="2">Gestión</option>
-              <option value="3">Administrador</option>
-            </Form.Select>
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicSelect">
+          <Form.Label>Seleccione una opción</Form.Label>
+          <Form.Select className="select-button">
+            <option value="1">Usuario</option>
+            <option value="2">Gestión</option>
+            <option value="3">Administrador</option>
+          </Form.Select>
+        </Form.Group>
+
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Correo electrónico</Form.Label>
