@@ -58,7 +58,7 @@ Cliente que navega la tienda desde la app.
 - Base de datos: MySQL, PostgreSQL
 - Autenticación: JWT o sesiones con roles
 
-## 📝 instalar las dependencias del package.json
+## 🔑 instalar las dependencias del package.json
 - npm install
 - npm install react-bootstrap bootstrap
 - npm install react-router-dom
