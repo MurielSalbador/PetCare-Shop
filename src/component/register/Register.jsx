@@ -3,24 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './Register.css';
-import Modal from 'react-bootstrap/Modal'; 
 import ModalSuccess from '../modalSuccess/ModalSuccess';
-
-
 
 function Register() {
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
+    username: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
-    dni: '',
   });
   const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-
 
   const handleChange = (e) => {
     setFormData({
@@ -29,100 +25,106 @@ function Register() {
     });
   };
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
+  const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    const formIsValid = event.currentTarget.checkValidity();
     const passwordsMatch = formData.password === formData.confirmPassword;
-  
-    if (form.checkValidity() === false || !passwordsMatch) {
-      event.stopPropagation();
-      setValidated(true);
-      return;
-    }
-  
+
     setValidated(true);
-    setShowModal(true);
-  
-    setTimeout(() => {
-      setShowModal(false);
-      navigate('/login');
-    }, 3000);
+
+    // Verificación de validación del formulario y si las contraseñas coinciden
+    if (!formIsValid || !passwordsMatch) return;
+
+    try {
+      const res = await fetch('http://localhost:3000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: formData.username,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setShowModal(true); // Mostrar el modal de éxito
+      } else {
+        setError(data.message || 'Error al registrarse');
+      }
+    } catch (err) {
+      setError('Error en el servidor');
+    }
   };
 
   return (
-    <>
-      <div className="login-form">
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <h3 className="text-center mb-4">Registrarse</h3>
+    <div className="login-form">
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <h3 className="text-center mb-4">Registrarse</h3>
 
-          <Form.Group className="mb-3" controlId="formNombre">
-            <Form.Label>Nombre</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Tu nombre"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleChange}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingresá tu nombre.
-            </Form.Control.Feedback>
-            <Form.Control.Feedback>Nombre Admitido</Form.Control.Feedback>
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="formUsername">
+          <Form.Label>Nombre</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Tu nombre"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            isInvalid={validated && !formData.username} // Mostrar error si el campo está vacío
+          />
+          <Form.Control.Feedback type="invalid">Ingresá tu nombre.</Form.Control.Feedback>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formApellido">
-            <Form.Label>Apellido</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Tu apellido"
-              name="apellido"
-              value={formData.apellido}
-              onChange={handleChange}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingresá tu apellido.
-            </Form.Control.Feedback>
-            <Form.Control.Feedback>Apellido Admitido</Form.Control.Feedback>
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="formLastName">
+          <Form.Label>Apellido</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Tu apellido"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            isInvalid={validated && !formData.lastName} // Mostrar error si el campo está vacío
+          />
+          <Form.Control.Feedback type="invalid">Ingresá tu apellido.</Form.Control.Feedback>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>Correo electrónico</Form.Label>
-            <Form.Control
-              required
-              type="email"
-              placeholder="Tu correo"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingresá un correo válido.
-            </Form.Control.Feedback>
-            <Form.Control.Feedback>Email válido</Form.Control.Feedback>
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="formEmail">
+          <Form.Label>Correo electrónico</Form.Label>
+          <Form.Control
+            required
+            type="email"
+            placeholder="Tu correo"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            isInvalid={validated && !formData.email} // Mostrar error si el campo está vacío
+          />
+          <Form.Control.Feedback type="invalid">Ingresá un correo válido.</Form.Control.Feedback>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formPassword">
-            <Form.Label>Contraseña</Form.Label>
-            <Form.Control
-              required
-              type="password"
-              placeholder="Tu contraseña"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              minLength={6}
-            />
-            <Form.Control.Feedback type="invalid">
-              La contraseña debe tener al menos 6 caracteres.
-            </Form.Control.Feedback>
-            <Form.Control.Feedback>Contraseña segura </Form.Control.Feedback>
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
+            required
+            type="password"
+            placeholder="Tu contraseña"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            minLength={6}
+            isInvalid={validated && (formData.password.length < 6)} // Verifica longitud mínima
+          />
+          <Form.Control.Feedback type="invalid">
+            La contraseña debe tener al menos 6 caracteres.
+          </Form.Control.Feedback>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formConfirmPassword">
-          <Form.Label>Repita la Contraseña</Form.Label>
+        <Form.Group className="mb-3" controlId="formConfirmPassword">
+          <Form.Label>Confirmar contraseña</Form.Label>
           <Form.Control
             required
             type="password"
@@ -131,59 +133,32 @@ function Register() {
             value={formData.confirmPassword}
             onChange={handleChange}
             minLength={6}
-            isInvalid={validated && (formData.confirmPassword.length < 6 || formData.confirmPassword !== formData.password)}
-            isValid={validated && formData.confirmPassword.length >= 6 && formData.confirmPassword === formData.password}
+            isInvalid={validated && formData.confirmPassword !== formData.password} // Verifica que coincidan las contraseñas
           />
-          {validated && formData.password !== formData.confirmPassword && (
-            <Form.Control.Feedback type="invalid">
-              Las contraseñas no coinciden.
-            </Form.Control.Feedback>
-          )}
-          {validated && formData.password === formData.confirmPassword && (
-            <Form.Control.Feedback type="valid">
-              Las contraseñas coinciden.
-            </Form.Control.Feedback>
-          )}
+          <Form.Control.Feedback type="invalid">
+            Las contraseñas no coinciden.
+          </Form.Control.Feedback>
         </Form.Group>
 
+        {error && (
+          <p className="text-danger text-center">{error}</p>
+        )}
 
-          <Form.Group className="mb-3" controlId="formDNI">
-            <Form.Label>DNI</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              pattern="\d+"
-              placeholder="Tu DNI"
-              name="dni"
-              value={formData.dni}
-              onChange={handleChange}
-              maxLength={8}
-              minLength={8}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingresá un DNI válido (solo números).
-            </Form.Control.Feedback>
-            <Form.Control.Feedback>DNI válido</Form.Control.Feedback>
-          </Form.Group>
+        <div className="button-group">
+          <Button type="submit" className="custom-button-ingresar">
+            Crear Usuario
+          </Button>
+        </div>
+      </Form>
 
-          <div className="button-group">
-            <Button  type="submit" className="custom-button-ingresar">
-              Crear Usuario
-            </Button>
-          </div>
-        </Form>
-
-        <ModalSuccess
-            show={showModal}
-            handleClose={() => {
-            setShowModal(false);
-            navigate('/login');
-         }}
-/>
-
-
-      </div>
-    </>
+      <ModalSuccess
+        show={showModal}
+        handleClose={() => {
+          setShowModal(false);
+          navigate('/login'); // Redirige al login después del registro
+        }}
+      />
+    </div>
   );
 }
 
