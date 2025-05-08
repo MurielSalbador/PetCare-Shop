@@ -6,27 +6,23 @@ const FaqQuestions = () => {
   const navigate = useNavigate();
 
   const quickActions = [
-    { title: "Rastrear tu paquete", desc: "Realiza un seguimiento de tus paquetes en Mis pedidos." },
-    { title: "Devolver productos que pediste", desc: "Devuelve tus pedidos utilizando nuestro Centro de devoluciones en línea." },
-    { title: "Verifica el estado de tu reembolso", desc: "Haz seguimiento a tus devoluciones y reembolsos en Mis pedidos." },
-    { title: "Rastrea tu devolución", desc: "Puedes mantenerte al tanto de tus devoluciones rastreándolas en Mis pedidos." },
-    { title: "Cancela tu membresía de Amazon Prime", desc: "Cancela tu membresía fácilmente a través de esta página." },
-    { title: "Actualización del método de pago", desc: "Mantén actualizados los métodos de pago para evitar interrupciones en las compras." },
-    { title: "Obtén soporte para productos", desc: "Brindamos soporte gratis para productos cuando necesitas ayuda para utilizar un producto o si no funciona correctamente." }
+    { title: "¿Tu paquete está a salvo?", desc: "Sí. Cada pedido se embala con cuidado y seguimiento para que llegue perfecto." },
+    { title: "¿Cómo puedo saber de qué proveedor viene un producto?", desc: "Trabajamos con proveedores verificados y te lo indicamos en la descripción del producto o en el detalle del pedido si aplica." },
+    { title: "¿Los productos son originales?", desc: "Sí, todos los productos que vendemos son 100% originales y vienen directamente de distribuidores oficiales o marcas reconocidas." },
+    { title: "Envíos que no fallan", desc: "Usamos operadores logísticos confiables y siempre te damos seguimiento. Si algo sale mal, lo resolvemos sin vueltas." },
+    { title: "Amor por lo natural", desc: "Apostamos por productos con ingredientes reales, materiales no tóxicos y opciones eco-friendly para cuidar a tu mascota y al planeta." },
+    { title: "Gente que ama lo que hace", desc: "Somos un equipo de personas que conviven con animales todos los días. Eso se nota en cómo armamos cada pedido y en cómo te atendemos." },
+    
   ];
 
   const menuItems = [
-    "Toma acciones rápidas",
+    "Preguntas frecuentes",
     "¿Dónde está mi pedido?",
     "Envíos y entregas",
     "Devoluciones y Reembolsos",
     "Administrar Tu Cuenta",
     "Seguridad y Privacidad",
     "Pago, Precios y Promociones",
-    "Dispositivos y Soluciones Digitales",
-    "Cuentas de Amazon Business",
-    "Servicios para productos grandes y pesados",
-    "Otros temas y sitios de ayuda"
   ];
 
   return (
@@ -40,7 +36,7 @@ const FaqQuestions = () => {
       </aside>
       <section className="help-content">
         {quickActions.map((action, index) => (
-          <div key={index} className="help-card" onClick={() => navigate('/FaqQuestions')}>
+          <div key={index} className="help-card">
             <h4>{action.title}</h4>
             <p>{action.desc}</p>
           </div>

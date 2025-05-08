@@ -23,11 +23,11 @@ function Login() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success('✅ Bienvenido!', {
+        toast.success('✔ Bienvenido!', {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
-          closeOnClick: true,
+          closeOnClick: false,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
@@ -37,6 +37,7 @@ function Login() {
       } else {
           toast.error(data.message || '❌ Contraseña o Email incorrecto', {
             position: 'top-right',
+            closeOnClick: true,
             autoClose: 3000,
             theme: 'colored',
           });
@@ -44,6 +45,7 @@ function Login() {
         
     } catch (err) {
       toast.error('⚠️ Error en el servidor', {
+        closeOnClick: false,
         position: 'top-right',
         autoClose: 3000,
         theme: 'colored',
@@ -85,18 +87,17 @@ function Login() {
           </Form.Group>
 
           <div className="button-group">
-            <Button type="submit" className="custom-button-register">
+            <Button type="submit" className="my-custom-button custom-button-register">
               Iniciar Sesión
             </Button>
           </div>
         </Form>
 
-        <Button onClick={handleRegisterClick} className="custom-button-register">
+        <Button onClick={handleRegisterClick} className="my-custom-button custom-button-register">
           Registrarse
         </Button>
-      </div>
-
-      <div className="faq-recomendation">
+        
+        <div className="faq-recomendation">
         <p className="text-center">
           Si olvidaste tu contraseña, hacé click en{' '}
           <a href="/recuperar" className="custom-button-faq">
@@ -111,6 +112,7 @@ function Login() {
             Preguntas Frecuentes
           </a>
         </p>
+      </div>
       </div>
     </>
   );

@@ -22,10 +22,10 @@ function AppContent() {
         <Route path="/register" element={<Register />} />
         <Route path="/faq" element={<FaqQuestions />} />
       </Routes>
-      <ToastContainer position="top-right" autoClose={1500} />
-
+      
       {!hideFooter && <Footer />}
       </div>
+      <ToastContainer position="top-right" autoClose={1500} />
     </>
   );
 }

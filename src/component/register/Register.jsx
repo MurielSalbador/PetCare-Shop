@@ -50,12 +50,16 @@ function Register() {
       const data = await res.json();
 
       if (res.ok) {
-        setShowModal(true); // Mostrar el modal de éxito
+        setShowModal(true);
+        setTimeout(() => {
+          setShowModal(false);
+          navigate('/login'); 
+        }, 1500); 
       } else {
         setError(data.message || 'Error al registrarse');
       }
     } catch (err) {
-      setError('Error en el servidor');
+      setError(data.message || 'Error en el servidor');
     }
   };
 

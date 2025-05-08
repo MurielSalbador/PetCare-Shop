@@ -1,4 +1,7 @@
 .help-wrapper {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 3%;
+    border-radius: 30px;
     display: flex;
     max-width: 1200px;
     margin: 40px auto;
@@ -17,7 +20,7 @@
     text-align: left;
     border: none;
     border-radius: 12px;
-    background-color: #f4f4f4;
+    background-color: #d3d3d3;
     cursor: pointer;
     font-size: 0.95rem;
     color: #333;
