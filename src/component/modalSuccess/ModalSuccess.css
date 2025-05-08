@@ -1,3 +1,9 @@
+.icon-check {
+  color: #5f1c75;
+  margin-right: 8px;
+  font-size: 1.4rem;
+}
+
 .custom-modal {
     max-width: 500px;
   }
