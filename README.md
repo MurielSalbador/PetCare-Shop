@@ -1,72 +1,48 @@
-#  PetCare Shop 
+# 🐾 PetCare Shop - Frontend
 
-PetCare Shop es una tienda online especializada en productos para mascotas como comida, juguetes y accesorios. Es un sistema web diseñado para ofrecer una experiencia de compra sencilla para los usuarios, y una gestión clara y segura para los administradores.
+**PetCare Shop** es una tienda online especializada en productos para mascotas como comida, juguetes y accesorios. Este repositorio contiene el frontend del sistema web, desarrollado con React, que ofrece una experiencia amigable y accesible para los usuarios.
 
-## 🐾 Descripción del Sistema
+## 🌐 Descripción General
 
-- **Nombre del sistema**: PetCare Shop
-- **Tipo de tienda**: Única (no es franquicia)
 - **Acceso**: 100% online
-- **Roles definidos**: Usuario común, Admin, Superadmin
+- **Interfaz adaptable** a roles (Usuario, Admin, Superadmin)
+- **Tecnologías**: HTML, CSS, JavaScript, React
 
-## 👤 Roles y Permisos
+## 👤 Funcionalidades por Rol
 
-###  Superadmin
-El superadmin representa al dueño o programador del sistema. Tiene acceso total a todas las funcionalidades.
-
-- Crear, editar y eliminar productos
-- Ver historial de usuarios
-- Crear nuevos administradores
-- Editar configuración general del sistema
-- Acceso a la pantalla de "Gestión de empleados"
-
-###  Admin
-Empleado encargado de la gestión de productos.
-
-- Crear nuevos productos
-- Editar precio o stock de productos existentes
-- Visualizar usuarios y sus compras (solo lectura)
-- Acceso restringido: no puede crear admins ni editar configuración general
-
-###  Usuario común
-Cliente que navega la tienda desde la app.
-
-- Registro de cuenta
-- Ver y comprar productos
-- Gestionar su carrito
+### Usuario común
+- Registro e inicio de sesión
+- Navegación y búsqueda de productos
+- Agregar productos al carrito
 - Ver historial de pedidos
 - Editar su perfil
 
-## 🔧 Gestión de Roles en la Interfaz
+### Admin
+- Gestión de productos (crear, editar stock/precio)
+- Visualizar usuarios y sus compras (solo lectura)
 
-- Menús adaptados según el rol
-- Rutas protegidas para evitar accesos no autorizados
-- Botones y pantallas específicas según el tipo de usuario
-  - Ej. “Crear Admin” solo visible al Superadmin
-- Acceso mínimo y necesario para cada tipo de usuario
+### Superadmin
+- Todas las funciones del admin
+- Crear y administrar cuentas de administradores
+- Acceso a la configuración general del sistema
 
-## 🔐 Seguridad
+## 🔐 Seguridad y Acceso
 
-- Sistema de autenticación con rutas protegidas
-- Gestión de sesiones por tipo de usuario
-- Restricción de vistas y botones según el rol del usuario
+- Rutas protegidas con autenticación JWT
+- Interfaz dinámica basada en el rol
+- Ocultamiento de botones y secciones según permisos
 
-## 🚀 Tecnologías
+## 🚀 Tecnologías Utilizadas
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: Flask, Django, Node.js
-- Base de datos: MySQL, PostgreSQL
-- Autenticación: JWT o sesiones con roles
+- **React**
+- **React Router DOM** – Navegación entre páginas
+- **React Bootstrap** – Componentes UI
+- **React Icons** – Iconografía moderna
 
-## 🔑 instalar las dependencias del package.json
-- npm install
-- npm install react-bootstrap bootstrap
-- npm install react-router-dom
-- npm install react-icons
+## 📦 Instalación de dependencias
 
-## 📝 Créditos
-
-Trabajo práctico realizado por:
-- Muriel Elen Salbador
-- Juan Cruz De Angelis
-
+```bash
+npm install
+npm install react-bootstrap bootstrap
+npm install react-router-dom
+npm install react-icons
