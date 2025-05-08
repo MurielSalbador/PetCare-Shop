@@ -23,13 +23,31 @@ function Login() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success(' Bienvenido!');
+        toast.success('✅ Bienvenido!', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
         navigate('/');
       } else {
-        toast.error(data.message || 'Contraseña o Email incorrecto');
-      }
+          toast.error(data.message || '❌ Contraseña o Email incorrecto', {
+            position: 'top-right',
+            autoClose: 3000,
+            theme: 'colored',
+          });
+        }
+        
     } catch (err) {
-      toast.error('Error en el servidor');
+      toast.error('⚠️ Error en el servidor', {
+        position: 'top-right',
+        autoClose: 3000,
+        theme: 'colored',
+      });
     }
   };
 

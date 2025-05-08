@@ -5,7 +5,7 @@
     padding: 40px;
     border-radius: 16px;
     background-color: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(100, 10, 15, 0.1);
   }
   
   /* Título */
@@ -24,8 +24,8 @@
   }
   
   .form-control:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    border-color: #2b0233;
+    box-shadow: 0 0 0 0.2rem rgba(97, 6, 89, 0.25);
   }
   
   /* Feedback */
