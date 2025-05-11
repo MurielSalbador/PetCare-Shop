@@ -16,12 +16,14 @@ function AppContent() {
   return (
     <>
       <div className="app-wrapper">
+      <main>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/faq" element={<FaqQuestions />} />
       </Routes>
+      </main>
       
       {!hideFooter && <Footer />}
       </div>

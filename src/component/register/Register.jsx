@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import './Register.css';
 import ModalSuccess from '../modalSuccess/ModalSuccess';
 
+
 function Register() {
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
@@ -66,7 +67,7 @@ function Register() {
   return (
     <div className="login-form">
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <h3 className="text-center mb-4">Registrarse</h3>
+        <h3 className="text-center mb-4">Registrarse </h3>
 
         <Form.Group className="mb-3" controlId="formUsername">
           <Form.Label>Nombre</Form.Label>

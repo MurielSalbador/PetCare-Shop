@@ -1,17 +1,23 @@
 import React from 'react';
 import { FaGithub, FaInstagram, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import './Footer.css';
+import Logo from '../../assets/Logo.png';
 
 const Footer = () => {
   return (
     <footer className="footer">
+     
       <div className="footer-container">
         <div className="footer-left">
-          <h3 className="footer-title">PetCare © 2025</h3>
+        <img src={Logo} alt="PetCare logo" className="footer-logo" />
+        <div>
+          <h3 className="footer-title">
+            PetCare © 2025</h3>
           <p className="footer-text">
             Sistema de gestión para veterinarias y pet shops.
             Brindamos soluciones modernas para el cuidado de tus mascotas.
           </p>
+          </div>
         </div>
 
         <div className="footer-right">
