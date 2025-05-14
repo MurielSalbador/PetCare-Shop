@@ -1,80 +1,122 @@
-body {
-  background-image: url('../../assets/bg-LRF.jpeg');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url("https://i.postimg.cc/0jv27Qvw/20008380-645221846.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
+/* Centrar sin usar margen auto */
 .login-form {
-    width: 1000px;
-    margin: 40px auto;
-    padding: 40px;
-    border-radius: 16px;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 10px 25px rgba(100, 10, 15, 0.1);
-  }
-  
-  /* Título */
-  .login-form h3 {
-    font-weight: 600;
-    text-align: center;
-    color: #333;
-  }
-  
-  /* Inputs */
-  .form-control {
-    border-radius: 8px;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
-  
-  .form-control:focus {
-    border-color: #2b0233;
-    box-shadow: 0 0 0 0.2rem rgba(97, 6, 89, 0.25);
-  }
-  
-  /* Feedback */
-  .valid-feedback {
-    color: #198754;
-    font-size: 0.9rem;
-  }
-  
-  .invalid-feedback {
-    font-size: 0.9rem;
-  }
-  
-  /* Botón */
-  .custom-button-ingresar {
+  width: 500px;
+  padding: 30px 30px 20px 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.login-form:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+}
+
+.login-form h3 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* INPUTS */
+.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 15px;
+  margin-bottom: 20px;
+  padding: 10px 8px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-bottom: 2px solid #ffdde1;
+  background: transparent;
+}
+
+/* BOTONES */
+.custom-button-ingresar,
+.custom-button-register,
+.custom-button-crear {
+  background-color: #271930;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 15px;
+  margin-top: 10px;
+  width: 100%;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.custom-button-ingresar:hover,
+.custom-button-register:hover,
+.custom-button-crear:hover {
+  color: #000000;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+}
+
+/* LINKS */
+.faq-recomendation {
+  margin-top: 30px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.custom-button-faq {
+  color: #ffdde1;
+  font-weight: bold;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-button-faq:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 576px) {
+  .login-form {
+    padding: 30px 20px;
+    margin: 30px 10px;
     width: 100%;
-    padding: 10px;
-    font-size: 17px;
-    border-radius: 10px;
-    background-color: #5f1c75;
-    border: none;
-    color: #fff;
-    transition: background-color 0.3s ease;
   }
-  
-  .custom-button-ingresar:hover {
-    background-color: #9d44b8;
-  }
-  
-  /* Agrupación del botón */
-  .button-group {
-    margin-top: 20px;
-  }
-  
-  /* Responsive */
-  @media (max-width: 576px) {
-    .login-form {
-      padding: 30px 20px;
-      margin: 30px 10px;
-    }
-  
-    .custom-button-register {
-      font-size: 16px;
-    }
-  }
+}

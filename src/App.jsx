@@ -5,6 +5,7 @@ import Login from './component/login/Login.jsx';
 import Register from './component/register/Register.jsx';
 import FaqQuestions from './component/faq/FaqQuestions.jsx';
 import Footer from './component/footer/Footer.jsx';
+import Home from './component/home/Home.jsx'
 import './App.css';
 
 function AppContent() {
@@ -18,7 +19,7 @@ function AppContent() {
       <div className="app-wrapper">
       <main>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/faq" element={<FaqQuestions />} />
