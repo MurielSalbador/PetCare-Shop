@@ -65,7 +65,8 @@ function Register() {
   };
 
   return (
-    <div className="login-form">
+    <div className='register-background'>
+      <div className="login-form">
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <h3 className="text-center mb-4">Registrarse </h3>
 
@@ -163,6 +164,7 @@ function Register() {
           navigate('/login'); // Redirige al login después del registro
         }}
       />
+    </div>
     </div>
   );
 }

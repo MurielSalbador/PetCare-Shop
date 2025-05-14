@@ -49,7 +49,8 @@ const FaqQuestions = () => {
   ];
 
   return (
-    <div className="help-wrapper">
+    <div className='help-background'>
+      <div className="help-wrapper">
       <aside className="help-sidebar">
         {faqSections.map((item, index) => (
           <button
@@ -77,6 +78,8 @@ const FaqQuestions = () => {
       </a>
     </div>
   );
+    </div>
+    )
 };
 
 export default FaqQuestions;

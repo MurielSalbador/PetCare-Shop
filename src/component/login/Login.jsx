@@ -58,8 +58,8 @@ function Login() {
   };
 
   return (
-    <>
-      <div className="login-form">
+<div className='login-background'>
+        <div className="login-form">
         <h3 className="text-center mb-4">Iniciar sesión</h3>
 
         <Form onSubmit={handleSubmit}>
@@ -114,7 +114,7 @@ function Login() {
         </p>
       </div>
       </div>
-    </>
+</div>
   );
 }
 

@@ -1,25 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
-  
-}
-
-html, body {
-  height: 100%;
+.help-background {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: url("https://i.postimg.cc/0jv27Qvw/20008380-645221846.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  
- 
+  font-family: "Open Sans", sans-serif;
 }
 
-/* Estilo de ayuda tipo glassmorphism */
 .help-wrapper {
   background: rgba(255, 255, 255, 0.582);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -34,7 +27,6 @@ html, body {
   gap: 30px;
   align-items: flex-start;
   transition: all 0.3s ease;
-  
 }
 
 .help-sidebar {
@@ -77,12 +69,9 @@ html, body {
   max-width: 100%;
 }
 
-
-
-
 .help-content-single h2 {
   font-size: 1.6rem;
-  color: #2f1036;;
+  color: #2f1036;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
@@ -92,7 +81,6 @@ html, body {
   line-height: 1.6;
 }
 
-/* Botón de volver tipo glassmorphism */
 .back-arrow-container {
   display: flex;
   justify-content: flex-end;
@@ -123,7 +111,6 @@ html, body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Botón flotante de WhatsApp */
 .whatsapp-btn {
   position: fixed;
   bottom: 20px;
@@ -149,7 +136,6 @@ html, body {
   fill: white;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .help-wrapper {
     flex-direction: column;

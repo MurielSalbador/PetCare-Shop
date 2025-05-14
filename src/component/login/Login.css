@@ -1,9 +1,18 @@
-body {
-    background-color: #D7C7F0;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  .login-form {
+.login-background{
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background-image: url("https://i.postimg.cc/0jv27Qvw/20008380-645221846.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
     max-width: 700px;
     margin: 80px auto;
     padding: 30px;
@@ -65,9 +74,6 @@ body {
     gap: 10px;
   }
   
-
-  
- 
   .custom-button-login {
     background-color: #9d44b8;
     font-weight: bold;
