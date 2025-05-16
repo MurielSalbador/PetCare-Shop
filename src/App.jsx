@@ -6,13 +6,16 @@ import Register from './component/register/Register.jsx';
 import FaqQuestions from './component/faq/FaqQuestions.jsx';
 import Footer from './component/footer/Footer.jsx';
 import Home from './component/home/Home.jsx'
+import Shop from '../src/componentsCart/Shop.jsx';
+import CartHeader from '../src/componentsCart/CartHeader.jsx';
+import ContactForm from './component/contact/ContactForm.jsx'
 import './App.css';
 
 function AppContent() {
   const location = useLocation();
 
 
-  const hideFooter = location.pathname === '/login' || location.pathname === '/register';
+  const hideFooter = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/cart' ;
 
   return (
     <>
@@ -23,6 +26,9 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/faq" element={<FaqQuestions />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/cart" element={<CartHeader />} />
+        <Route path="/contact" element={<ContactForm />} />
       </Routes>
       </main>
       

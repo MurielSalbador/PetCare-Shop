@@ -9,49 +9,52 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [validated, setValidated] = useState(false);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
+  const form = event.currentTarget;
 
-    try {
-      const res = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+  // Si el formulario no es válido, no continues
+  if (!form.checkValidity()) {
+    event.stopPropagation();
+    setValidated(true);
+    return;
+  }
+
+  setValidated(true);
+
+  try {
+    const res = await fetch('http://localhost:3000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success('✔ Bienvenido!', {
+        position: 'top-right',
+        autoClose: 3000,
+        theme: 'colored',
       });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        toast.success('✔ Bienvenido!', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        });
-        navigate('/');
-      } else {
-          toast.error(data.message || '❌ Contraseña o Email incorrecto', {
-            position: 'top-right',
-            closeOnClick: true,
-            autoClose: 3000,
-            theme: 'colored',
-          });
-        }
-        
-    } catch (err) {
-      toast.error('⚠️ Error en el servidor', {
-        closeOnClick: false,
+      navigate('/');
+    } else {
+      toast.error(data.message || '❌ Contraseña o Email incorrecto', {
         position: 'top-right',
         autoClose: 3000,
         theme: 'colored',
       });
     }
-  };
+  } catch (err) {
+    toast.error('⚠️ Error en el servidor', {
+      position: 'top-right',
+      autoClose: 3000,
+      theme: 'colored',
+    });
+  }
+};
 
   const handleRegisterClick = () => {
     navigate('/register');
@@ -62,7 +65,7 @@ function Login() {
         <div className="login-form">
         <h3 className="text-center mb-4">Iniciar sesión</h3>
 
-        <Form onSubmit={handleSubmit}>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Correo electrónico</Form.Label>
             <Form.Control
@@ -72,7 +75,11 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+             <Form.Control.Feedback type="invalid">
+            Ingreso de correo invalido. Vuelva a intentar
+          </Form.Control.Feedback>
           </Form.Group>
+         
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Contraseña</Form.Label>
@@ -84,7 +91,11 @@ function Login() {
               required
               minLength={6}
             />
+              <Form.Control.Feedback type="invalid">
+            Ingreso de contraseña invalido. Vuelva a intentar
+          </Form.Control.Feedback>
           </Form.Group>
+        
 
           <div className="button-group">
             <Button type="submit" className="my-custom-button custom-button-register">

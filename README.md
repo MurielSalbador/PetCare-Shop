@@ -47,4 +47,8 @@ npm install react-bootstrap bootstrap
 npm install react-router-dom
 npm install react-icons
 npm install react-toastify
-npm install express sequelize mysql2 jsonwebtoken bcryptjs cors
+npm install zustand@latest
+npm install @tanstack/react-query
+npm i axios
+npm i @emailjs/browser
+

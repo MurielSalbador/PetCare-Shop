@@ -1,119 +1,169 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useProducts } from "../../../../PetCare-Shop-Api/src/hooks/useProducts.js";
+import { Products } from "../productsList/productsList.jsx";
+import { Link } from "react-router-dom";
 import "./Home.modules.css";
+import Carousel from "react-bootstrap/Carousel";
 
-const Home = () => {
-  const userName = "Juan"; // podés cambiarlo dinámicamente si querés
+export default function Home() {
+  const [search, setSearch] = useState("");
+  const { products, getProducts, loading } = useProducts({
+    search,
+    sort: false,
+  });
+
+  useEffect(() => {
+    getProducts({ search });
+  }, [search, getProducts]);
+
+  const handleInputChange = (e) => {
+    setSearch(e.target.value);
+  };
 
   return (
-    <div className="home-wrapper">
-      {/* Menú lateral */}
-      <aside className="cart">
-        <h2 className="logo">Pet Shop</h2>
-        <nav className="menu">
-          <ul>
+    <div className="home-container">
+      <header className="main-header">
+        <div className="header-actions">
+          {/* Navegación izquierda */}
+          <ul className="nav-left">
             <li>
-              <span className="material-symbols-outlined">shopping_cart</span>
-              Carrito
+              <a href="#" className="logo">
+                <i className="fa-brands fa-pied-piper-alt"></i>
+              </a>
             </li>
             <li>
-              <span className="material-symbols-outlined">inventory</span>
-              Productos
+              <a href="/" className="link">
+                <i className="fa-solid fa-house"></i> Home
+              </a>
             </li>
             <li>
-              <span className="material-symbols-outlined">info</span>
-              Sobre Nosotros
+              <a href="#" className="link">
+                <i className="fa-solid fa-info-circle"></i> Conocenos
+              </a>
             </li>
             <li>
-              <span className="material-symbols-outlined">account_circle</span>
-              Mi Perfil
+              <a href="/contact" className="link">
+                <i className="fa-solid fa-envelope"></i> Contactanos
+              </a>
             </li>
           </ul>
-        </nav>
-        <div className="logout-faq">
-          <button className="logout-button">Cerrar Sesión</button>
-          <div className="faq-box">
-            <span className="material-symbols-outlined">help</span>
-            Preguntas Frecuentes
-          </div>
+
+          {/* Navegación derecha */}
+          <ul className="nav-right">
+            <li>
+              <a href="/cart" className="link">
+                <i className="fa-solid fa-cart-shopping"></i> 🛒 Mi carrito
+              </a>
+            </li>
+            <li>
+              <a href="" className="link" id="hire-me">
+                <i className="fa-regular fa-user"></i> Mi cuenta
+              </a>
+            </li>
+          </ul>
         </div>
-      </aside>
+      </header>
 
-      {/* Contenido principal */}
-      <main className="main-content">
-        {/* Encabezado */}
-        <header className="header">
-          <h1>
-            Bienvenid@ <span className="user-name">{userName}</span>
-          </h1>
-          <div className="icons">
-            <span className="material-symbols-outlined">notifications</span>
-            <span className="material-symbols-outlined">person</span>
-          </div>
-        </header>
+      <div className="tienda button">
+        <h2>¡Visitá nuestra tienda para ver todos los productos!</h2>
+        <Link to="/shop">
+          <button>Tienda</button>
+        </Link>
+      </div>
 
-        {/* Banner informativo */}
-        <section className="banner">
+      <Carousel fade controls={false} indicators={false} interval={3000}>
+        <Carousel.Item>
           <img
-            src="https://media.discordapp.net/attachments/1229928429952958534/1372294864212987965/vecteezy_ai-generated-joyful-brown-rabbit-with-meadow-flower-crown-on_39088236.jpg?ex=682640af&is=6824ef2f&hm=0ab532c8695b67d0a27dc9a60449c79f818e98d8ce995b99e91edd5ca5f45dec&=&format=webp&width=985&height=552" 
-            alt="conejo en flores"
-            className="banner-image"
+            className="d-block w-100"
+            src="https://acdn-us.mitiendanube.com/stores/002/428/163/themes/amazonas/1-slide-1746809340135-8547998733-43943e1e987d4614f61aaaa933f8afac1746809342-1920-1920.png?148558823"
+            alt="First slide"
           />
-          <div className="info-box">
-            <p>Para más información</p>
-            <button className="contact-btn">Contáctanos</button>
-            <img src="/dog.png" alt="perro" className="info-dog" />
-          </div>
-        </section>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://acdn-us.mitiendanube.com/stores/002/428/163/themes/amazonas/1-slide-1728044319277-8878296151-521c6b8ebac3a32296d4c6b84223ade61728044317-1920-1920.png?148558823"
+            alt="Second slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://acdn-us.mitiendanube.com/stores/002/428/163/themes/amazonas/1-slide-1727106214782-3375990206-7e890d772242eb0ff9c2f9cb44ea91511727106211-1920-1920.png?148558823"
+            alt="Third slide"
+          />
+        </Carousel.Item>
+      </Carousel>
 
-        {/* Buscador */}
-        <div className="search-bar">
-          <span className="paw-icon">🐾</span>
-          <input type="text" placeholder="Alfombras" />
-          <button className="search-btn">
-            <span className="material-symbols-outlined">search</span>
-          </button>
+      <main className="main-content">
+        <div className="main-wrapper">
+          <section className="search-bar">
+            <h2>¿Qué está buscando?</h2>
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="Buscando Producto..."
+                value={search}
+                onChange={handleInputChange}
+              />
+              <button>→</button>
+            </div>
+          </section>
+
+          <section className="product-list">
+            {loading ? <p>Loading...</p> : <Products products={products} />}
+          </section>
         </div>
-
-        {/* Categorías */}
-        <section className="categories">
-          <h3 className="section-title">Podés encontrar...</h3>
-          <div className="category-grid">
-            <div className="category-card">
-              <img src="https://images-ext-1.discordapp.net/external/jgfT9THR4G9fU0AezziPLgatDpmPg74OlcPckaUg4iM/https/http2.mlstatic.com/D_NQ_NP_800700-MLA45295950793_032021-O.webp?format=webp" alt="Juguete" />
-              <p>Juguete</p>
-            </div>
-            <div className="category-card">
-              <img src="https://images-ext-1.discordapp.net/external/KbZa9u9iZ-RstqHJqsIw_k4VzWoynST1pcb1BHbIa9g/https/http2.mlstatic.com/D_NQ_NP_716021-MLU70623130164_072023-O.webp?format=webp" alt="Collar XL" />
-              <p>Collar XL</p>
-            </div>
-            <div className="category-card">
-              <img src="https://images-ext-1.discordapp.net/external/YTViRazHbNOo-9YXNYpgQWA4a8BFgv8JqZv7PqHITh0/%3Fv%3D1717418852%26width%3D1445/https/monococojugueterias.com/cdn/shop/files/MC062.png?format=webp&quality=lossless&width=656&height=656" alt="Juguete" />
-              <p>Juguete</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Valoración */}
-        <section className="rating-section">
-          <h3>Valoración</h3>
-          <div className="rating-grid">
-            <div className="rating-item">
-              <img src="/fama1.jpg" alt="Fama 1" />
-              <span>Fama 1</span>
-            </div>
-            <div className="rating-item">
-              <img src="/fama2.jpg" alt="Fama 2" />
-              <span>Fama 2</span>
-            </div>
-            <div className="rating-item">
-              <img src="/fama3.jpg" alt="Fama 3" />
-              <span>Fama 3</span>
-            </div>
-          </div>
-        </section>
       </main>
+
+      <section className="categories">
+        <h3>Algunos de nuestros productos!</h3>
+        <div className="category-items">
+          <div className="category-item">
+            <img
+              src="https://acdn-us.mitiendanube.com/stores/002/428/163/products/3-8355791aacba83caa917271887025177-480-0.webp"
+              alt="Granola Pasas de Uva y Almendras x 300gr"
+            />
+            <span>Granola Pasas de Uva y Almendras x 300gr</span>
+          </div>
+          <div className="category-item">
+            <img
+              src="https://acdn-us.mitiendanube.com/stores/002/428/163/products/4-014bf2d2580c9182f317424005608787-1024-1024.webp"
+              alt="Barras de Cereal Pasas de Uva x 45 grs"
+            />
+            <span>Barras de Cereal Pasas de Uva x 45 grs</span>
+          </div>
+          <div className="category-item">
+            <img
+              src="https://acdn-us.mitiendanube.com/stores/002/428/163/products/4-bdca41a5bbbb4d99e917271885875888-1024-1024.webp"
+              alt="Granola Natural x 300grs"
+            />
+            <span>Granola Natural x 300grs</span>
+          </div>
+          <div className="category-item">
+            <img
+              src="https://acdn-us.mitiendanube.com/stores/002/428/163/products/5-54b3c3f7cc10829ce817424004730174-1024-1024.webp"
+              alt="Barras de Cereal Coco x 45 grs"
+            />
+            <span>Barras de Cereal Coco x 45 grs</span>
+          </div>
+          <div className="category-item">
+            <img
+              src="https://acdn-us.mitiendanube.com/stores/002/428/163/products/19-05487ea95382c80f0917271884686041-1024-1024.webp"
+              alt="Granola VeganMAX x 300grs"
+            />
+            <span>Granola VeganMAX x 300grs</span>
+          </div>
+          <div className="category-item">
+            <img
+              src="https://acdn-us.mitiendanube.com/stores/002/428/163/products/18-0d36c297c7a1a51f9e17271887482389-1024-1024.webp"
+              alt="Granola Chocolate y Nuez x 1kg"
+            />
+            <span>Granola Chocolate y Nuez x 1kg</span>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
-};
-
-export default Home;
+}
