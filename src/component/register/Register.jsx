@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './Register.css';
 import ModalSuccess from '../modalSuccess/ModalSuccess';
+import cat from '../../assets/bg-cat.jpg'
+import med from '../../assets/bg-med.jpg'
 
 
 function Register() {
@@ -65,90 +67,100 @@ function Register() {
   };
 
   return (
-    <div className='register-background'>
-      <div className="login-form">
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <h3 className="text-center mb-4">Registrarse </h3>
+    <div className="register-background" style={{ backgroundImage: `url(${med})` }}>
+  <div className="register-container">
+    <div className="register-left" style={{ backgroundImage: `url(${cat})` }}>
+    </div>
+    <div className="register-right">
+       <button className="back-arrow" onClick={() => navigate('/')}>
+      <i className="fas fa-arrow-left"></i>
+    </button>
+      <Form noValidate validated={validated} onSubmit={handleSubmit} className="register-form">
+        <h3 className="text-center mb-4">Registrarse</h3>
 
-        <Form.Group className="mb-3" controlId="formUsername">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Tu nombre"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            isInvalid={validated && !formData.username} // Mostrar error si el campo está vacío
-          />
-          <Form.Control.Feedback type="invalid">Ingresá tu nombre.</Form.Control.Feedback>
-        </Form.Group>
+        <div className="form-row">
+          <div className="form-column">
+            <Form.Group className="mb-3" controlId="formUsername">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                placeholder="Tu nombre"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                isInvalid={validated && !formData.username}
+              />
+              <Form.Control.Feedback type="invalid">Ingresá tu nombre.</Form.Control.Feedback>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formLastName">
-          <Form.Label>Apellido</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Tu apellido"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            isInvalid={validated && !formData.lastName} // Mostrar error si el campo está vacío
-          />
-          <Form.Control.Feedback type="invalid">Ingresá tu apellido.</Form.Control.Feedback>
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Contraseña</Form.Label>
+              <Form.Control
+                required
+                type="password"
+                placeholder="Tu contraseña"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                minLength={6}
+                isInvalid={validated && (formData.password.length < 6)}
+              />
+              <Form.Control.Feedback type="invalid">
+                La contraseña debe tener al menos 6 caracteres.
+              </Form.Control.Feedback>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formEmail">
-          <Form.Label>Correo electrónico</Form.Label>
-          <Form.Control
-            required
-            type="email"
-            placeholder="Tu correo"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            isInvalid={validated && !formData.email} // Mostrar error si el campo está vacío
-          />
-          <Form.Control.Feedback type="invalid">Ingresá un correo válido.</Form.Control.Feedback>
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="formConfirmPassword">
+              <Form.Label>Confirmar contraseña</Form.Label>
+              <Form.Control
+                required
+                type="password"
+                placeholder="Repetí tu contraseña"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                minLength={6}
+                isInvalid={validated && formData.confirmPassword !== formData.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                Las contraseñas no coinciden.
+              </Form.Control.Feedback>
+            </Form.Group>
+          </div>
 
-        <Form.Group className="mb-3" controlId="formPassword">
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control
-            required
-            type="password"
-            placeholder="Tu contraseña"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            minLength={6}
-            isInvalid={validated && (formData.password.length < 6)} // Verifica longitud mínima
-          />
-          <Form.Control.Feedback type="invalid">
-            La contraseña debe tener al menos 6 caracteres.
-          </Form.Control.Feedback>
-        </Form.Group>
+          <div className="form-column">
+            <Form.Group className="mb-3" controlId="formLastName">
+              <Form.Label>Apellido</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                placeholder="Tu apellido"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                isInvalid={validated && !formData.lastName}
+              />
+              <Form.Control.Feedback type="invalid">Ingresá tu apellido.</Form.Control.Feedback>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formConfirmPassword">
-          <Form.Label>Confirmar contraseña</Form.Label>
-          <Form.Control
-            required
-            type="password"
-            placeholder="Repetí tu contraseña"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            minLength={6}
-            isInvalid={validated && formData.confirmPassword !== formData.password} // Verifica que coincidan las contraseñas
-          />
-          <Form.Control.Feedback type="invalid">
-            Las contraseñas no coinciden.
-          </Form.Control.Feedback>
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>Correo electrónico</Form.Label>
+              <Form.Control
+                required
+                type="email"
+                placeholder="Tu correo"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                isInvalid={validated && !formData.email}
+              />
+              <Form.Control.Feedback type="invalid">Ingresá un correo válido.</Form.Control.Feedback>
+            </Form.Group>
+          </div>
+        </div>
 
-        {error && (
-          <p className="text-danger text-center">{error}</p>
-        )}
+        {error && <p className="text-danger text-center">{error}</p>}
 
         <div className="button-group">
           <Button type="submit" className="custom-button-ingresar">
@@ -156,16 +168,17 @@ function Register() {
           </Button>
         </div>
       </Form>
+    </div>
+  </div>
 
-      <ModalSuccess
-        show={showModal}
-        handleClose={() => {
-          setShowModal(false);
-          navigate('/login'); // Redirige al login después del registro
-        }}
-      />
-    </div>
-    </div>
+  <ModalSuccess
+    show={showModal}
+    handleClose={() => {
+      setShowModal(false);
+      navigate('/login');
+    }}
+  />
+</div>
   );
 }
 

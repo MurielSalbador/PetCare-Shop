@@ -1,14 +1,50 @@
-.login-background{
+.login-background {
   min-height: 100dvh;
   margin: 0;
   padding: 0;
-  background-image: url("https://i.postimg.cc/0jv27Qvw/20008380-645221846.jpg");
-  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+}
+
+.login-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-arrow {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #064d5a;
+}
+
+.login-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  height: 700px;
+  background-color: whitesmoke;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.login-left {
+  flex: 1;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.login-right {
+  flex: 1;
+  padding: 40px 30px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -31,8 +67,7 @@
     font-size: 24px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    color: #5f1c75;
-    margin-bottom: 30px;
+    color: #222;
   }
   
   .form-control {
@@ -40,7 +75,7 @@
     padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
-    margin-bottom: 15px;
+    
   }
   
   .form-control:focus {
@@ -48,14 +83,18 @@
   }
   
   .my-custom-button {
-    border: none;
-    border-radius: 25px;
-    color: white;
-    font-size: 16px;
-    width: 70%;
-    cursor: pointer;
-    padding: 12px;
-    margin-top: 10px;
+  background-color: #d66695;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 17px;
+  margin-top: 10px;
+  width: 100%;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
   }
   
   
@@ -64,7 +103,6 @@
     padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
-    margin-bottom: 15px;
   }
   
   .button-group {
@@ -74,42 +112,15 @@
     gap: 10px;
   }
   
-  .custom-button-login {
-    background-color: #9d44b8;
-    font-weight: bold;
-    border-radius: 25px;
-    color: white;
-    font-size: 16px;
-    padding: 12px;
-    cursor: pointer;
-    margin-top: 10px;
-    border: none;
-  }
-  
-  .custom-button-register {
-    background-color: #5f1c75;
-    font-weight: bold;
-    border-radius: 25px;
-    color: white;
-    font-size: 16px;
-    padding: 12px;
-    cursor: pointer;
-    margin-top: 10px;
-    border: none;
-  }
-  .custom-button-login:hover {
-    background-color: #5f1c75;
-  }
-  
   .custom-button-register:hover {
-    background-color: #9d44b8;
+    background-color: #97315b;
+    border-color: #97315b;
   }
   
   .text-center {
     color: black;
     font-size: larger;
     text-align: center;
-    margin-top: 30px;
   }
   
   .form-control.is-invalid {
@@ -120,19 +131,21 @@
     box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
   }
   
-  
-  .custom-button-faq {
-    
-    color: #5f1c75;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
+  .faq-recomendation{
+    margin-top: 30px;
+    color: #ffffff;
+    text-align: center;
   }
 
-  .faq-recomendation{
-    margin-top: 10%;
+  .custom-button-faq:hover {
+  text-decoration: underline;
   }
+
+  .custom-button-faq {
+  color: #d66695;
+  font-weight: bold;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

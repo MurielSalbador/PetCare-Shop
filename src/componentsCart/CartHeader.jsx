@@ -13,7 +13,7 @@ const navigate = useNavigate();
  <FiltersProvider>
   
   <main className="main">
-        <CloseButton aria-label="Cerrar formulario" onClick={() => navigate('/')} />
+        <CloseButton aria-label="Cerrar formulario" onClick={() => navigate('/shop')} />
     <div className="container">
       <h1 className="page-title">🛒 Mi Carrito</h1>
 

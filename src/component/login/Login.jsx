@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
 import './Login.css';
+import login from '../../assets/bg-login.png';
+import corgi from '../../assets/bg-corgi.jpg'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -15,7 +17,7 @@ function Login() {
   event.preventDefault();
   const form = event.currentTarget;
 
-  // Si el formulario no es válido, no continues
+  
   if (!form.checkValidity()) {
     event.stopPropagation();
     setValidated(true);
@@ -61,10 +63,17 @@ function Login() {
   };
 
   return (
-<div className='login-background'>
-        <div className="login-form">
+  <div className='login-background' style={{ backgroundImage: `url(${login})` }}>
+    <div className="login-container">
+      <div className="login-left" style={{ backgroundImage: `url(${corgi})` }}></div>
+      <div className="login-right">
+       <div className="login-header">
+        <button className="back-arrow" onClick={() => navigate('/')}>
+          <i className="fas fa-arrow-left"></i>
+        </button>
+      </div>
         <h3 className="text-center mb-4">Iniciar sesión</h3>
-
+  
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Correo electrónico</Form.Label>
@@ -75,11 +84,10 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-             <Form.Control.Feedback type="invalid">
-            Ingreso de correo invalido. Vuelva a intentar
-          </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Ingreso de correo inválido. Vuelva a intentar
+            </Form.Control.Feedback>
           </Form.Group>
-         
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Contraseña</Form.Label>
@@ -91,11 +99,10 @@ function Login() {
               required
               minLength={6}
             />
-              <Form.Control.Feedback type="invalid">
-            Ingreso de contraseña invalido. Vuelva a intentar
-          </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Ingreso de contraseña inválido. Vuelva a intentar
+            </Form.Control.Feedback>
           </Form.Group>
-        
 
           <div className="button-group">
             <Button type="submit" className="my-custom-button custom-button-register">
@@ -107,25 +114,21 @@ function Login() {
         <Button onClick={handleRegisterClick} className="my-custom-button custom-button-register">
           Registrarse
         </Button>
-        
-        <div className="faq-recomendation">
-        <p className="text-center">
-          Si olvidaste tu contraseña, hacé click en{' '}
-          <a href="/recuperar" className="custom-button-faq">
-            Recuperarla
-          </a>{' '}
-          y seguí las instrucciones para recuperarla.
-        </p>
 
-        <p className="text-center">
-          Para más preguntas, hacé click en{' '}
-          <a href="/faq" className="custom-button-faq">
-            Preguntas Frecuentes
-          </a>
-        </p>
+        <div className="faq-recomendation">
+          <p className="text-center">
+            Si olvidaste tu contraseña, hacé click en{' '}
+            <a href="/recuperar" className="custom-button-faq">Recuperarla</a> y seguí las instrucciones.
+          </p>
+
+          <p className="text-center">
+            Para más preguntas, hacé click en{' '}
+            <a href="/faq" className="custom-button-faq">Preguntas Frecuentes</a>
+          </p>
+        </div>
       </div>
-      </div>
-</div>
+    </div>
+  </div>
   );
 }
 

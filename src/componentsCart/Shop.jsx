@@ -19,11 +19,6 @@ const [showCart, setShowCart] = useState(false);
     {/* Navegación izquierda */}
     <ul className="nav-left">
       <li>
-        <a href="#" className="logo">
-          <i className="fa-brands fa-pied-piper-alt"></i> 
-        </a>
-      </li>
-      <li>
         <a href="/" className="link">
           <i className="fa-solid fa-house"></i>  Home
         </a>
@@ -44,7 +39,7 @@ const [showCart, setShowCart] = useState(false);
     <ul className="nav-right">
       <li>
         <a href="/cart" className="link">
-          <i className="fa-solid fa-cart-shopping"></i> 🛒 Mi carrito
+          <i className="fa-solid fa-cart-shopping"></i>  Mi carrito
         </a>
       </li>
       <li>
