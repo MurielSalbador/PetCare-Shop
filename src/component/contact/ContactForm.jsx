@@ -17,24 +17,16 @@ const ContactForm = () => {
     e.preventDefault();
     const formIsValid = e.currentTarget.checkValidity();
     setValidated(true);
-
     if (!formIsValid) return;
 
     emailjs
-      .sendForm(
-        "service_h9u217y",
-        "template_lwc97il",
-        form.current,
-        "UkWj1Chi6zu-WlxCw"
-      )
+      .sendForm("service_h9u217y", "template_lwc97il", form.current, "UkWj1Chi6zu-WlxCw")
       .then(
         (result) => {
-          console.log("Mensaje enviado ✅", result.text);
           form.current.reset();
           setShowModal(true);
         },
         (error) => {
-          console.log("Error ❌", error.text);
           alert("Ocurrió un error al enviar el mensaje. Intenta nuevamente.");
         }
       );
@@ -42,92 +34,64 @@ const ContactForm = () => {
 
   const handleClose = () => {
     setShowModal(false);
-    navigate('/');
+    navigate("/");
   };
 
   useEffect(() => {
-    let timer;
     if (showModal) {
-      timer = setTimeout(() => {
-        handleClose();
-      }, 2000);
+      const timer = setTimeout(handleClose, 2000);
+      return () => clearTimeout(timer);
     }
-    return () => {
-      clearTimeout(timer);
-    };
   }, [showModal]);
 
   return (
-    <div className="container-contact">
-      <div className="contact-close">
-        <CloseButton aria-label="Cerrar formulario" onClick={handleClose} />
+    <div className="contact-bg">
+      <div className="contact-container">
+        <button className="back-arrow-form" onClick={handleClose}>
+          ←
+        </button>
+
+        <div
+          className="contact-left"
+          style={{ backgroundImage: "url('https://i.postimg.cc/0jv27Qvw/20008380-645221846.jpg')" }}
+        />
+
+        <div className="contact-right">
+          <Form noValidate validated={validated} ref={form} onSubmit={sendEmail} className="contact-form">
+            <h3 className="form-title">Contáctanos</h3>
+
+            <Form.Control
+              required type="text" name="name" placeholder="Tu nombre"
+              className="form-control mb-3"
+            />
+            <Form.Control.Feedback type="invalid">Ingresá tu nombre.</Form.Control.Feedback>
+
+            <Form.Control
+              required type="email" name="email" placeholder="Tu correo"
+              className="form-control mb-3"
+            />
+            <Form.Control.Feedback type="invalid">Ingresá un correo válido.</Form.Control.Feedback>
+
+            <Form.Control
+              required type="text" name="subject" placeholder="Asunto"
+              className="form-control mb-3"
+            />
+            <Form.Control.Feedback type="invalid">Ingresá un asunto.</Form.Control.Feedback>
+
+            <Form.Control
+              required as="textarea" name="message" rows={5} placeholder="Tu mensaje"
+              className="form-control mb-3"
+            />
+            <Form.Control.Feedback type="invalid">Ingresá un mensaje.</Form.Control.Feedback>
+
+            <Button type="submit" className="btn-submit">
+              Enviar
+            </Button>
+          </Form>
+        </div>
       </div>
 
-      <Form noValidate validated={validated} ref={form} onSubmit={sendEmail} className="contact-form">
-        <h2 className="title">Contáctanos</h2>
-
-        <Form.Group className="mb-3" controlId="formName">
-          <Form.Control
-            required
-            type="text"
-            name="name"
-            placeholder="Tu nombre"
-            className="contact-input"
-          />
-          <Form.Control.Feedback type="invalid">
-            Ingresá tu nombre.
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formEmail">
-          <Form.Control
-            required
-            type="email"
-            name="email"
-            placeholder="Tu correo"
-            className="contact-input"
-          />
-          <Form.Control.Feedback type="invalid">
-            Ingresá un correo válido.
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formSubject">
-        <Form.Control
-            required
-            type="text"
-            name="subject"
-            placeholder="Asunto"
-            className="contact-input"
-          />
-          <Form.Control.Feedback type="invalid">
-            Ingresá un asunto.
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formMessage">
-          <Form.Control
-            required
-            as="textarea"
-            name="message"
-            placeholder="Tu mensaje"
-            rows={5}
-            className="contact-textarea"
-          />
-          <Form.Control.Feedback type="invalid">
-            Ingresá un mensaje.
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Button type="submit" className="contact-button">
-          Enviar
-        </Button>
-      </Form>
-
-      <ModalSuccessMsg
-        show={showModal}
-        handleClose={handleClose}
-      />
+      <ModalSuccessMsg show={showModal} handleClose={handleClose} />
     </div>
   );
 };

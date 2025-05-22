@@ -1,5 +1,5 @@
 .register-background {
-  min-height: 100dvh;
+  height: 100dvh;
   margin: 0;
   padding: 0;
   display: flex;
@@ -8,9 +8,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
 
+
 .register-container {
+  transform: scale(0.75);
+  transform-origin: center;
   display: flex;
   position: relative;
   width: 100%;

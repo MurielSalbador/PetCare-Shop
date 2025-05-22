@@ -15,7 +15,9 @@ function AppContent() {
   const location = useLocation();
 
 
-  const hideFooter = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/cart' ;
+  const hideFooter = location.pathname === '/login' || location.pathname === '/register'|| 
+  location.pathname === '/cart' ||
+  location.pathname === '/contact';
 
   return (
     <>

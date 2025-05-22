@@ -52,7 +52,7 @@ export default function Home() {
               </a>
             </li>
             <li>
-              <a href="" className="link" id="hire-me">
+              <a href="/login" className="link" id="hire-me">
                 <i className="fa-regular fa-user"></i> Mi cuenta
               </a>
             </li>

@@ -1,5 +1,5 @@
 .footer {
-  background: linear-gradient(135deg, #1a1a2e, #3f0d40);
+  background: linear-gradient(15deg, #000000, #222);
   color: #f3f4f6;
   padding: 1rem 1rem 0.5rem;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
@@ -27,12 +27,6 @@
   width: 90px;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.footer-logo:hover {
-  transform: rotate(-3deg) scale(1.05);
 }
 
 .footer-info {
@@ -44,8 +38,8 @@
   margin: 0;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #ffb6ff;
-  text-shadow: 0 0 5px rgba(255, 182, 255, 0.3);
+  color: whitesmoke;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .footer-text {
@@ -73,7 +67,7 @@
 }
 
 .footer-socials a:hover {
-  color: #ffb6ff;
+  color: #7c7c7c;
   transform: scale(1.2);
   text-shadow: 0 0 10px #ffb6ff;
 }
